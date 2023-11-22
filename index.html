@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <center>
+        <div class="box">
+            <div class="form-container">
+                <p class="title">Welcome back</p>
+                <form class="form">
+                    <input type="email" class="input" placeholder="Email" id="maily">
+                    <input type="password" class="input" placeholder="Password" id="Passpap">
+                    <!-- <p class="page-link">
+                        <span class="page-link-label">Forgot Password?</span>
+                    </p> -->
+                </form>
+                <button class="form-btn" onclick="signinEmail()">Log in</button>
+                <p class="sign-up-label">
+                    Don't have an account?<span class="sign-up-link" onclick="out()">Sign up</span>
+                </p>
+                <div class="buttons-container">
+                    <div class="apple-login-button" onclick="signInF()">
+                        <div class="men">
+                            <img src="./img/YouTube_Google_Logo_Google_S_Google_Account_PNG_-_Free_Download-removebg-preview.png"
+                                onclick="signInF()">
+                        </div>
+                        <span>Log in with Google</span>
+                    </div>
+                    <div class="google-login-button men" onclick="signInG()">
+                        <img src="./img/MarketKarma_on_GitHub-removebg-preview.png" onclick="signInG()">
+                        <span onclick="signInG()">Log in with GitHub</span>
+                    </div>
+                </div>
+            </div>
+            <div class="img quak">
+                <img src="./img/Tablet login.gif" alt="">
+            </div>
+        </div>
+    </center>
+    <script src="./script.js" type="module"></script>
+</body>
+
+</html>

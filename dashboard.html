@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="dash.css">
+</head>
+
+<body>
+  <!-- <h1>welcome baba</h1> -->
+  <div id="dip"></div>
+
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyABLVwJH3mYZO55eHmHmZyQsThENFUjJwc",
+      authDomain: "super-52191.firebaseapp.com",
+      projectId: "super-52191",
+      storageBucket: "super-52191.appspot.com",
+      messagingSenderId: "259209449149",
+      databaseURL: "https://super-52191-default-rtdb.firebaseio.com",
+      appId: "1:259209449149:web:d6bcacd2dba3405446f1d4"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const database = getDatabase(app)
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        let nomenclecature = user.displayName
+        let maily = user.email
+        let imago = user.photoURL
+        dip.innerHTML = ` 
+   <nav>
+     <ul>
+       <img src="${imago}" class="pain">
+      <li><a href="">${nomenclecature}</a></li>
+      <li><a href="">${maily}</a></li>
+      <li> <div class="container">
+      <div class="search-container">
+        <input class="input" type="text" placeholder="movie title" id="todo">
+        <svg viewBox="0 0 24 24" class="search__icon">
+          <g>
+            <path
+              d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+            </path>
+          </g>
+        </svg>
+      </div>
+    </div> </li>
+    <li><div class="container">
+      <div class="search-container">
+        <input class="input" type="text" placeholder="Genre" id="todoDesc">
+        <svg viewBox="0 0 24 24" class="search__icon">
+          <g>
+            <path
+              d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+            </path>
+          </g>
+        </svg>
+      </div>
+    </div> </li>
+  <li><input type="file"></li>
+    <li> <button onclick="upload()" class="btn3">Upload</button> </li>
+          <button onclick="signO()" class="out">
+         <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+         <span>Sign-out</span>
+        </button>
+                 </ul>
+              </nav>
+                           
+                `
+      } 
+      else {
+        // window.location.href='index.html'
+      }
+    })
+
+    const signO = () => {
+      signOut(auth)
+        .then(() => {
+          dip.innerHTML = "Sign-out successful"
+          window.location.href="index.html"
+        
+        }).catch((error) => {
+          console.log("An error happened.");
+        });
+    }
+
+    window.signO = signO
+
+    const upload = () => {
+      let date = new Date().toLocaleDateString()
+      let time = new Date().toLocaleTimeString()
+      onAuthStateChanged(auth, (user) => {
+        let nam = user.displayName
+
+        if (todo.value !== "" && todoDesc !== "") {
+          let allObj = {
+            todo: todo.value,
+            desc: todoDesc.value,
+            nam,
+            date,
+            time
+          }
+          console.log(allObj);
+          let dbRef = ref(database, "allTodos")
+          set(dbRef, todo)
+        } else {
+          alert("guy,guy,why now,why you dey fall my hand")
+        }
+      })
+    }
+    window.upload = upload
+
+
+  </script>
+</body>
+
+</html>
